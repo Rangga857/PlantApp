@@ -25,6 +25,15 @@ class TitleWithCustomUnderline extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+            margin: EdgeInsets.only(right: kDefaultPadding / 4),
+            height: 7,
+            color: kPrimaryColor.withOpacity(0.2),
+          ),)
         ],
       ) ,
     );
