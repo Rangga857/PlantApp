@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plantapp_mobile/bloc/camera_bloc.dart';
 import 'package:plantapp_mobile/bloc/camera_event.dart';
 import 'package:plantapp_mobile/bloc/camera_state.dart';
+import 'package:plantapp_mobile/components/my_bottom_nav_bar.dart';
 import 'package:plantapp_mobile/constrants.dart';
 import 'package:plantapp_mobile/screens/home/home_screen.dart';
 
@@ -74,6 +75,40 @@ class PicturePage extends StatelessWidget {
           },
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FloatingActionButton(
+              heroTag: 'cameraBtn',
+              onPressed: () {
+                final bloc = context.read<CameraBloc>();
+                if (bloc.state is! CameraReady) {
+                  bloc.add(InitializeCamera());
+                }
+                bloc.add(OpenCameraAndCapture(context));
+              },
+              tooltip: 'Ambil Foto',
+              backgroundColor: kPrimaryColor, 
+              foregroundColor: Colors.white, 
+              child: const Icon(Icons.camera_alt),
+            ),
+            const SizedBox(height: 12),
+            FloatingActionButton(
+              heroTag: 'galleryBtn',
+              onPressed: () {
+                context.read<CameraBloc>().add(PickImageFromGallery());
+              },
+              tooltip: 'Pilih dari Galeri',
+              backgroundColor: kPrimaryColor, 
+              foregroundColor: Colors.white, 
+              child: const Icon(Icons.photo_library),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: const MyBottomNavBar(),
     );
   }
 }
