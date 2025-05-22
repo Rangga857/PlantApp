@@ -20,6 +20,8 @@ class PicturePage extends StatelessWidget {
         child: BlocConsumer<CameraBloc, CameraState>(
           listener: (context, state) {
             if (state is CameraReady && state.snackbarMessage != null) {
+              final messenger = ScaffoldMessenger.of(context);
+              messenger.hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.snackbarMessage!),
