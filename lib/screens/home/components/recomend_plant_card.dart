@@ -7,7 +7,14 @@ class RecomendPlantCard extends StatelessWidget {
   final int price;
   final VoidCallback press;
 
-  const RecomendPlantCard({super.key});
+  const RecomendPlantCard(
+    {super.key,
+    required this.image,
+    required this.country,
+    required this.press,
+    required this.price,
+    required this.title
+    });
 
   @override
   Widget build(BuildContext context) {
