@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:plantapp_mobile/constrants.dart';
+import 'package:plantapp_mobile/screens/home/components/title_with_custom_underline.dart';
 
 class TitleWithMoreBtn extends StatelessWidget {
   final String title;
   final VoidCallback press;
-  
+
   const TitleWithMoreBtn(
     {super.key,
     required this.title,
@@ -13,6 +15,12 @@ class TitleWithMoreBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Padding
+    (padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+    child: Row(
+      children: <Widget>[
+        TitleWithCustomUnderline(text: title),
+      ],)
+    );
   }
 }
